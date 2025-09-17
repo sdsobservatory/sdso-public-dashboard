@@ -1,0 +1,13 @@
+name = "sdso-allsky"
+main = "dist/index.js"
+compatibility_date = "2025-01-15"
+assets = { directory = "./public/" }
+compatibility_flags = [ "nodejs_compat" ]
+
+[[r2_buckets]]
+bucket_name = "lumisky-test-bucket"
+binding = "BUCKET"
+
+[observability]
+enabled = true
+head_sampling_rate = 1

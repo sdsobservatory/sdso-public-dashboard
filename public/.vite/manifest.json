@@ -1,0 +1,11 @@
+{
+  "src/client/index.tsx": {
+    "file": "assets/index-Ru9syD65.js",
+    "name": "index",
+    "src": "src/client/index.tsx",
+    "isEntry": true,
+    "css": [
+      "assets/index-DUinJ-Gj.css"
+    ]
+  }
+}
