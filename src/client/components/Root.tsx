@@ -4,7 +4,7 @@ import { Title } from "./Title";
 import { AllskyViewer } from "./AllskyViewer";
 import { PanoramaViewer } from "./PanoramaViewer";
 import { TimelapseViewer } from "./TimelapseViewer";
-import { Metadata } from "../../model";
+import type { Metadata } from "../../model";
 
 export const Root = () => {
   const [title, setTitle] = useState<string>("LumiSky - All Sky");

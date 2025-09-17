@@ -9,7 +9,7 @@ export const AllskyViewer = (props: AllskyViewerProps) => {
 
   const reloadImg = () => {
     // timestamp for cache busting
-    setImgSrc(`${props.url}?time=${new Date().getTime()}`);
+    setImgSrc(`${props.url}?time=${Date.now()}`);
   };
 
   useEffect(() => {

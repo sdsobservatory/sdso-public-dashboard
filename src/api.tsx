@@ -1,9 +1,7 @@
-import { Context, Hono } from "hono";
-import { stream } from "hono/streaming";
+import { type Context, Hono } from "hono";
 import { bearerAuth } from "hono/bearer-auth";
 import { validator } from "hono/validator";
-
-import { Metadata, MetadataSchema, getMetadata, setMetadata } from "./model";
+import { type Metadata, MetadataSchema, getMetadata, setMetadata } from "./model";
 
 type Bindings = {
   LUMISKY_API_KEY: string;
@@ -13,7 +11,7 @@ type Bindings = {
 const api = new Hono<{ Bindings: Bindings }>();
 
 async function getFromR2(c: Context, key: string): Promise<Response> {
-  let obj: R2ObjectBody | null = await c.env.BUCKET.get(key);
+  const obj: R2ObjectBody | null = await c.env.BUCKET.get(key);
   if (!obj) {
     return c.notFound();
   }
@@ -91,7 +89,7 @@ api.post("/upload/:key", async (c) => {
   const MaxSize: number = 200 * 1024 * 1024; // 200MB;
   const MimeTypes: string[] = ["image/jpeg", "image/png", "video/mp4", "application/json"];
 
-  let errors: string[] = [];
+  const errors: string[] = [];
   const key: string = c.req.param("key");
   const form: FormData = await c.req.formData();
   const formFile: FormDataEntryValue | null = form.get("file");

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "hono/jsx";
+import { useEffect, useRef } from "hono/jsx";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 

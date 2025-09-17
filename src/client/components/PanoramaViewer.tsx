@@ -1,15 +1,15 @@
 import { useRef, useEffect, useState, useCallback } from "hono/jsx";
 import {
   Viewer,
-  ViewerConfig,
-  PanoData,
+  type ViewerConfig,
+  type PanoData,
   EquirectangularAdapter,
-  PanoDataProvider,
+  type PanoDataProvider,
 } from "@photo-sphere-viewer/core";
 
 import "@photo-sphere-viewer/core/index.css";
 
-const panoDataProvider: PanoDataProvider = (image: HTMLImageElement, xmpData?: PanoData) => {
+const panoDataProvider: PanoDataProvider = (image: HTMLImageElement, _xmpData?: PanoData) => {
   const panoData: PanoData = {
     fullWidth: image.width,
     fullHeight: image.height,
@@ -46,7 +46,7 @@ export const PanoramaViewer = (props: PanoramaViewerProps) => {
   const setPanorama = () => {
     if (viewerRef.current) {
       // timestamp for cache busting
-      const url = `${props.url}?time=${new Date().getTime()}`;
+      const url = `${props.url}?time=${Date.now()}`;
       viewerRef.current.setPanorama(url, { showLoader: false });
     }
   };
@@ -59,7 +59,7 @@ export const PanoramaViewer = (props: PanoramaViewerProps) => {
         panoData: panoDataProvider,
         adapter: EquirectangularAdapter,
         defaultZoomLvl: 0,
-        defaultPitch: 0.707,
+        defaultPitch: Math.SQRT1_2,
       };
 
       const oneMinute = 60000;
