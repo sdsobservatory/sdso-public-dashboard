@@ -19,9 +19,11 @@ export const AllskyViewer = (props: AllskyViewerProps) => {
   });
 
   return (
-    <div class="card border shadow rounded-2 overflow-hidden">
-      <div class="card-img">
-        <img src={imgSrc} style="width: 100%;" alt="All Sky Image" />
+    <div class="col-12">
+      <div class="card border shadow rounded-2 overflow-hidden">
+        <div class="card-img">
+          <img src={imgSrc} style="width: 100%;" alt="All Sky Image" />
+        </div>
       </div>
     </div>
   );

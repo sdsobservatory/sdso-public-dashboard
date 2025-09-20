@@ -1,5 +1,5 @@
 export interface TitleProps {
-  title: string
+  title: string;
 }
 
 export const Title = (props: TitleProps) => {

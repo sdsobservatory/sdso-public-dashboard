@@ -8,8 +8,11 @@
     "format": "biome format --write"
   },
   "dependencies": {
-    "@photo-sphere-viewer/core": "^5.14.0",
+    "@photo-sphere-viewer/core": "^5.11.4",
     "bootstrap": "^5.3.8",
+    "chart.js": "^4.5.0",
+    "chartjs-adapter-date-fns": "^3.0.0",
+    "date-fns": "^4.1.0",
     "hono": "^4.9.7",
     "three": "^0.180.0",
     "videojs": "^1.0.0",

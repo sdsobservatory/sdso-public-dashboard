@@ -2,6 +2,7 @@ import { type Context, Hono } from "hono";
 import { bearerAuth } from "hono/bearer-auth";
 import { validator } from "hono/validator";
 import { type Metadata, MetadataSchema, getMetadata, setMetadata } from "./model";
+import { type ChartData, ChartDataSchema, getChartData, setChartData } from "./model";
 
 type Bindings = {
   LUMISKY_API_KEY: string;
@@ -44,8 +45,13 @@ api.on("POST", "/metadata", async (c, next) => {
   return bearer(c, next);
 });
 
-api.get("/check", c => {
-  return c.text('');
+api.on("POST", "/chart", async (c, next) => {
+  const bearer = bearerAuth({ token: c.env.LUMISKY_API_KEY });
+  return bearer(c, next);
+});
+
+api.get("/check", (c) => {
+  return c.text("");
 });
 
 api.get("/image", async (c) => {
@@ -127,5 +133,26 @@ api.post("/upload/:key", async (c) => {
 
   return c.json({ success: errors.length === 0, errors: errors });
 });
+
+api.get("/chart", async (c) => {
+  const chartData = await getChartData(c.env.BUCKET);
+  return c.json(chartData);
+});
+
+api.post(
+  "/chart",
+  validator("json", async (value, c) => {
+    const parsed = await ChartDataSchema.safeParseAsync(value);
+    if (!parsed.success) {
+      return c.json({ success: false, error: parsed.error }, 422);
+    }
+    return parsed.data;
+  }),
+  async (c) => {
+    const param: ChartData = await c.req.json();
+    await setChartData(c.env.BUCKET, param);
+    return c.json({ success: true, error: {} });
+  },
+);
 
 export default api;

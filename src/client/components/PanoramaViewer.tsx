@@ -80,10 +80,12 @@ export const PanoramaViewer = (props: PanoramaViewerProps) => {
   }, [viewerElement]);
 
   return (
-    <div class="card border shadow rounded-2 overflow-hidden mt-4">
-      <div class="card-header text-center fw-bold">Panorama</div>
-      <div class="card-img">
-        <div ref={setRef} id="pano-viewer" style="aspect-ratio: 3/2;" />
+    <div class="col-12">
+      <div class="card border shadow rounded-2 overflow-hidden mt-4">
+        <div class="card-header text-center fw-bold">Panorama</div>
+        <div class="card-img">
+          <div ref={setRef} id="pano-viewer" style="aspect-ratio: 3/2;" />
+        </div>
       </div>
     </div>
   );
